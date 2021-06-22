@@ -1,148 +1,87 @@
-//const db = firebase.firestore();
+//let idCliente = sessionStorage.getItem('idCliente');
+//console.log(idCliente);
 
-/*db.collection("pedido").get().set({
-    cantidad,
-    condicion,
-    fecha_compra,
-    fecha_entrega,
-    id_cliente,
-    id_producto,
-    imagen,
-    nombre,
-    numero_tarjeta,
-    precio_unitario,
-    total_pagar
-})
-
-.then(function(docRef){
-   console.log("Document written with ID: ", docRef.id);
-})
-.catch(function (error) {
-    console.error("Error adding document: ", error);
-})*/
-//Leer documentos
 const fecha = new Date();
 const añoActual = fecha.getFullYear();
-console.log(añoActual);
 const hoy = fecha.getDate();
 const mesActual = fecha.getMonth() + 1;
-console.log(hoy);
-console.log(mesActual);
 
-var tabla = document.getElementById('compras2');
-db.collection("pedido").get().then((querySnapshot) => {
+var tabla = document.getElementById('compras');
+
+db.collection("pedido").where("idUsuario", "==",sessionStorage.getItem('idCliente'))
+.get()
+.then((querySnapshot) => {
+
     tabla.innerHTML = '';
+    
     querySnapshot.forEach((doc) => {
+
         const infoD = doc.data()
         infoD.id = doc.id;
+
+        localStorage.setItem("idPed",infoD.id);
         //infoD.DatosPedido.forEach((datos) => {
-            tabla.innerHTML += `
-            <div class="col-md-15 product-info">
-                <div>
-                    <span>
-                        ID de Compra:&nbsp;
-                        <span class="value">
-                            ${infoD.idPedido}
-                        </span>
-                    </span>
-                </div>            
-                <div>
-                    <span>
-                        Fecha de Compra:&nbsp;
-                        <span class="value">
-                            ${hoy}/${mesActual}/${añoActual}
-                        </span>
-                    </span>
-                </div>
-                <div>
-                    <span>
-                        Fecha de Llegada:&nbsp;
-                        <span class="value">
-                            Pendiente
-                        </span>
-                    </span>
-                </div>
- 
-                <div class="product-specs">
-                    <a href="#" class="product-name">
-                        Direccion de Envio
-                    </a>
-                    <br>
-                    <a href="#" class="product-name">
-                        Metodo de Pago
-                    </a>
-                <div>
-                <div>
-                    <span>
-                        Estado de la entrega:&nbsp;
-                        <span class="value">
-                            Pendiente
-                        </span>
-                    </span>
-                </div>
-                <div>
-                    <span>
-                        Total de la compra:&nbsp;
-                        <span class="value">
-                            ${infoD.pagoTotal}
-                        </span>
-                    </span>
-                </div>
-            </div>`;
-
-        //})
-
-    });
-})
-.catch((error) => {
-        console.log("Error getting documents: ", error);
-})
-
-
-var tabla2 = document.getElementById('compras3');
-db.collection("pedido").get().then((querySnapshot) => {
-    tabla2.innerHTML = '';
-    querySnapshot.forEach((doc) => {
-        const infoD = doc.data()
-        infoD.id = doc.id;
-        //console.log(infoD);
-        infoD.DatosPedido.forEach((datos) => {
-            tabla2.innerHTML += `
-                <div class="col-md-1">
-                    <div class="product-image">
-                        <img class="img-fluid d-block mx-auto image" src="${datos.imagen_producto}">
+        tabla.innerHTML += `
+        <div class="items">
+            <div class="product">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-3">
+                        <div class="product-image">
+                            <img class="img-fluid d-block mx-auto image" src="assets/img/paquete.png">
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-5 product-info">
-                    <div class="product-specs">
+                    <div class="col-md-5 product-info">
                         <div>
                             <span>
-                                Nombre:&nbsp;
+                                ID Pedido:&nbsp;
                                 <span class="value">
-                                    ${datos.nombre_prod}
+                                    ${infoD.id}
                                 </span>
                             </span>
-                        </div> 
+                        </div>
+                        <br>
                         <div>
                             <span>
-                                Vendedor:&nbsp;
+                                Fecha de Compra:&nbsp;
+                                <span class="value">
+                                    ${hoy}/${mesActual}/${añoActual}
+                                </span>
                             </span>
                         </div>
+                        <br>
                         <div>
                             <span>
-                                Precio por unidad:&nbsp;
-                            </span>
-                            <span class="value">
-                                ${datos.costo_producto}
+                                Fecha de llegada: 
+                                <span class="value">
+                                    Pendiente
+                                </span>
                             </span>
                         </div>
+                        <br>
+                        <a class="product-name" href="carrito.html" style="color: rgb(13,136,208);">
+                            Detalles del Pedido
+                        </a>
                     </div>
-                </div>`;
-            
-        })
-
-    });
+                
+                    <div class="col-6 col-md-2 quantity">
+                        <label class="form-label d-none d-md-block" for="quantity">
+                            Total de la compra
+                        </label>
+                        <span>
+                            $${infoD.pagoTotal}
+                        </span>
+                    </div>
+                    <div class="col">
+                        <button class="btn btn-primary" type="button" style="background: rgb(13,136,208);">
+                            Volver a comprar
+                        </button>
+                    </div>
+                </div>    
+            </div>
+        </div>`;
+        //})
+    })
 })
 .catch((error) => {
         console.log("Error getting documents: ", error);
-})
+});

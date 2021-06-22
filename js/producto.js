@@ -13,6 +13,9 @@ var getId = localStorage.getItem("id_variable");
 let id = '';
 let idCliente = sessionStorage.getItem('idCliente');
 let idCarritoComprar = idCliente + '1';
+
+let idPed = sessionStorage.getItem('idPed');
+
 const getProducto = (id) => db.collection('producto').doc(id).get();
 var existeCarrito = false;
 const datosProducto = [];
@@ -266,9 +269,7 @@ query.get().then(snapshot => {
                     <tr><td> ${infoD.specs[1]}</td></tr>
                     <tr><td> ${infoD.specs[2]}</td></tr>
                     <tr><td> ${infoD.specs[3]}</td></tr>
-                    <tr><td> ${infoD.specs[4]}</td></tr>
-                    <tr><td> ${infoD.specs[5]}</td></tr>
-                    <tr><td> ${infoD.specs[6]}</td></tr>
+
                 </tbody>
             </table>
         </div>`
