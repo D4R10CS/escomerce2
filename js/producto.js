@@ -100,10 +100,10 @@ db.collection("producto").where("nombre_prod", "==", getNombrep, true).get().the
                             consultCarrito = doc.data();
                             //console.log(consultCarrito.infoProducto)
                             const encontrarDato = consultCarrito.infoProducto.find(item => {
-                                return item.id_prod === e.target.dataset.id;
+                                return item.id_prod === getId;
                             })
                             const indexModificar = consultCarrito.infoProducto.findIndex(item => {
-                                return item.id_prod === e.target.dataset.id;
+                                return item.id_prod === getId;
                             })
 
                             //ACTUALIZAR CANTIDAD PROUDUCTO

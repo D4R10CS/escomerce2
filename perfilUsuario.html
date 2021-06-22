@@ -124,34 +124,71 @@
                                         </form>
                                     </div>
                                 </div>
-                                <div class="tab-pane fade specifications" role="tabpanel" id="compras">
-                                    <div class="items">
-                                        <div class="product">
-                                            <div class="row justify-content-center align-items-center">
-                                                <div class="col-md-3">
-                                                    <div class="product-image"><img class="img-fluid d-block mx-auto image" src="assets/img/subirImagen.png"></div>
-                                                </div>
-                                                <div class="col-md-5 product-info">
-                                                    <div><span>Fecha de Compra:&nbsp;</span><br><span class="value">Fecha de llegada: </span></div><a class="product-name" href="#" style="color: rgb(13,136,208);">Producto 1</a>
-                                                    <div class="product-specs">
-                                                        <div><span>Detalles:&nbsp;</span><span class="value"></span></div><a href="#" class="product-name">Direccion de Envio</a><br><a href="#" class="product-name">Metodo de Pago</a>
-                                                        <div><span>Vendedor:&nbsp;</span></div>
-                                                        <div><span>Estado de la entrega:&nbsp;</span><span class="value">Status</span></div>
-                                                        <div><span>Precio por unidad:&nbsp;</span><span class="value">Precio por unidad</span></div>
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-2 quantity"><label class="form-label d-none d-md-block" for="quantity">Total de la compra</label><span>$120</span></div>
-                                                <div class="col"><button class="btn btn-primary" type="button" style="background: rgb(13,136,208);">Volver a comprar</button></div>
-                                            </div>
 
+                                <div class="tab-pane fade specifications" role="tabpanel"  id="compras">
+                                    <div class="row justify-content-center align-items-center" id="compras2">
+                                        <div class="col-md-15 product-info">
+                                            <span>
+                                                Fecha de Compra:&nbsp;
+                                            </span>
+                                            <br>
+                                            <span class="value">
+                                                Fecha de llegada: 
+                                            </span>
+                                            <div class="product-specs">
+                                                <a href="#" class="product-name">Direccion de Envio
+                                                </a>
+                                                <br>
+                                                <a href="#" class="product-name">Metodo de Pago
+                                                </a>
+                                            </div>
+                                            <span>
+                                                Estado de la entrega:&nbsp;
+                                            </span>
+                                            <span class="value">
+                                                Status
+                                            </span>
+                                            <div>
+                                                <span>
+                                                    Total de la compra
+                                                    <span class="value">
+                                                        $120
+                                                    </span>
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div class="product"></div>
-                                        <div class="product"></div>
-                                    </div>
+                                    </div>                                 
+                                    <div class="row justify-content-center align-items-center" id="compras3">
+                                        <div class="col-md-3">
+                                            <div class="product-image">
+                                                <img class="img-fluid d-block mx-auto image" src="assets/img/subirImagen.png">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 product-info">
+                                            <div class="product-specs">
+                                                <div>
+                                                    <span>
+                                                        Nombre:&nbsp;
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span>
+                                                        Vendedor:&nbsp;
+                                                    </span>
+                                                </div>
+                                                <div>
+                                                    <span>
+                                                        Precio por unidad:&nbsp;
+                                                    </span>
+                                                    <span class="value">
+                                                        Precio por unidad
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                                             
                                 </div>
+
                                 <div class="tab-pane fade specifications" role="tabpanel" id="ventas">
                                     <div class="items">
                                         <div class="product">
@@ -491,8 +528,9 @@
 </script>
 
 <script src="./js/perfilUsuario.js"></script>
-               <script src="js/consultPedido.js"></script>
+    
  <script src="./js/perfil_usuario.js"></script>
+ <script src="./js/consultPedido.js"></script>
  <script src="./js/direcciones.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.10.0/baguetteBox.min.js"></script>

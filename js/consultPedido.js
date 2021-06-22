@@ -1,4 +1,4 @@
-var db = firebase.firestore();
+//const db = firebase.firestore();
 
 /*db.collection("pedido").get().set({
     cantidad,
@@ -21,33 +21,128 @@ var db = firebase.firestore();
     console.error("Error adding document: ", error);
 })*/
 //Leer documentos
+const fecha = new Date();
+const añoActual = fecha.getFullYear();
+console.log(añoActual);
+const hoy = fecha.getDate();
+const mesActual = fecha.getMonth() + 1;
+console.log(hoy);
+console.log(mesActual);
 
-var tabla = document.getElementById('compras');
+var tabla = document.getElementById('compras2');
 db.collection("pedido").get().then((querySnapshot) => {
     tabla.innerHTML = '';
     querySnapshot.forEach((doc) => {
-       tabla.innerHTML += `
-                                    <div class="items">
-                                        <div class="product">
-                                            <div class="row justify-content-center align-items-center">
-                                                <div class="col-md-3">
-                                                    <div class="product-image"><img class="img-fluid d-block mx-auto image" src=${doc.data().imagen}></div>
-                                                </div>
-                                                <div class="col-md-5 product-info">
-                                                    <div><span>ID de compra:&nbsp;${doc.id}</span><br><span>Fecha de compra:&nbsp;${doc.data().fecha_compra}</span><br><span class="value">Fecha de llegada:&nbsp;${doc.data().fecha_entrega}</span></div><br><a class="product-name" href="#" style="color: rgb(13,136,208);">${doc.data().nombre}</a>
-                                                    <div class="product-specs">
-                                                    <div><span>Detalles:&nbsp;</span><span class="value"></span></div><a href="#" class="product-name">Direccion de Envio</a><br><a href="#" class="product-name">Metodo de Pago</a>
-                                                        <div><span>Vendedor:&nbsp;</span><a class="product-name" href="#">david</a></span></div>
-                                                        <div><span>Estado de la entrega:&nbsp;</span><span class="value">Entregada</span></div>
-                                                        <div><span>Precio por unidad:&nbsp;$</span><span class="value">${doc.data().precio_unitario}</span></div>
-                                                        <div></div>
-                                                        <div></div>
-                                                        <div></div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-6 col-md-2 quantity"><label class="form-label d-none d-md-block" for="quantity">Total de la compra</label><span>$${doc.data().total_pagar}</span></div>
-                                                <div class="col"><button class="btn btn-primary" type="button" style="background: rgb(13,136,208);">Volver a comprar</button></div>
-                                            </div>                   
-          `
+        const infoD = doc.data()
+        infoD.id = doc.id;
+        //infoD.DatosPedido.forEach((datos) => {
+            tabla.innerHTML += `
+            <div class="col-md-15 product-info">
+                <div>
+                    <span>
+                        ID de Compra:&nbsp;
+                        <span class="value">
+                            ${infoD.idPedido}
+                        </span>
+                    </span>
+                </div>            
+                <div>
+                    <span>
+                        Fecha de Compra:&nbsp;
+                        <span class="value">
+                            ${hoy}/${mesActual}/${añoActual}
+                        </span>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        Fecha de Llegada:&nbsp;
+                        <span class="value">
+                            Pendiente
+                        </span>
+                    </span>
+                </div>
+ 
+                <div class="product-specs">
+                    <a href="#" class="product-name">
+                        Direccion de Envio
+                    </a>
+                    <br>
+                    <a href="#" class="product-name">
+                        Metodo de Pago
+                    </a>
+                <div>
+                <div>
+                    <span>
+                        Estado de la entrega:&nbsp;
+                        <span class="value">
+                            Pendiente
+                        </span>
+                    </span>
+                </div>
+                <div>
+                    <span>
+                        Total de la compra:&nbsp;
+                        <span class="value">
+                            ${infoD.pagoTotal}
+                        </span>
+                    </span>
+                </div>
+            </div>`;
+
+        //})
+
     });
-});
+})
+.catch((error) => {
+        console.log("Error getting documents: ", error);
+})
+
+
+var tabla2 = document.getElementById('compras3');
+db.collection("pedido").get().then((querySnapshot) => {
+    tabla2.innerHTML = '';
+    querySnapshot.forEach((doc) => {
+        const infoD = doc.data()
+        infoD.id = doc.id;
+        //console.log(infoD);
+        infoD.DatosPedido.forEach((datos) => {
+            tabla2.innerHTML += `
+                <div class="col-md-1">
+                    <div class="product-image">
+                        <img class="img-fluid d-block mx-auto image" src="${datos.imagen_producto}">
+                    </div>
+                </div>
+                <div class="col-md-5 product-info">
+                    <div class="product-specs">
+                        <div>
+                            <span>
+                                Nombre:&nbsp;
+                                <span class="value">
+                                    ${datos.nombre_prod}
+                                </span>
+                            </span>
+                        </div> 
+                        <div>
+                            <span>
+                                Vendedor:&nbsp;
+                            </span>
+                        </div>
+                        <div>
+                            <span>
+                                Precio por unidad:&nbsp;
+                            </span>
+                            <span class="value">
+                                ${datos.costo_producto}
+                            </span>
+                        </div>
+                    </div>
+                </div>`;
+            
+        })
+
+    });
+})
+.catch((error) => {
+        console.log("Error getting documents: ", error);
+})

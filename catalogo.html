@@ -105,7 +105,7 @@
                                             <div class="image">
                                                 <a><img class="img-fluid d-block mx-auto" src="assets/img/subirImagen.png"></a>
                                             </div>
-                                            <div class="product-name"><a>Descripcion producto</a></div>
+                                            <div class="review_titem_text"><a></a></div>
                                             <div class="product-name"></div>
                                             <div class="about">
                                                 <div class="d-none rating"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star.svg"><img src="assets/img/star-half-empty.svg"><img src="assets/img/star-empty.svg"></div>
@@ -228,6 +228,16 @@
     <!--Aquí se agregarán los js-->
     <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.6.3/firebase-app.js"></script>
+
+    <style>
+        .review_titem_text{
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            overflow: hidden;
+        }
+    </style>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
